@@ -24,8 +24,8 @@ class LoginUser(APIView):
     # print(serializer)
     if serializer.is_valid():
       user = serializer.save()
-      u = LoginSerializer(data=user['user'])
       if user != {}:
+        u = LoginSerializer(data=user['user'])
         return Response(
           {'message': 'user logged in', 
            'token': user['token'],
