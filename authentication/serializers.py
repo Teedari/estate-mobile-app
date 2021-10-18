@@ -16,6 +16,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     instance = validated_data
     user = User.objects.create(username=instance.get('username'))
     user.email = instance.get('email')
+    user.is_staff = True
+    user.is_superuser = True
     user.set_password(instance.get('password'))
     user.save()
     return user
